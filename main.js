@@ -16,6 +16,10 @@ var insertIntoTextarea = function (textarea, text, replaceSelection=true) {
   }
 };
 
+var getSelectionInTextarea = function (textarea) {
+  return textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
+}
+
 var getJSON = function (url) {
   return new Promise(function (resolve, reject) {
     var request = new XMLHttpRequest();
@@ -43,6 +47,12 @@ var getRandomGiphy = function () {
   });
 };
 
+var getGiphyByPhrase = function (phrase) {
+  return getJSON('https://api.giphy.com/v1/gifs/translate?s=' + encodeURI(phrase) + '&api_key=' + giphyAPIkey).then(function (response) {
+    return response.data;
+  });
+};
+
 var formatGiphyMarkdown = function(giphy) {
   return '![](https://media2.giphy.com/media/' + giphy.id + '/giphy.gif)';
 };
@@ -58,9 +68,17 @@ var addGiphyToolgroup = function (toolbarEl) {
   tools[i].appendChild(toolgroup);
   tools[i].addEventListener('click', function(e) {
     e.preventDefault();
-    getRandomGiphy().then(function (giphy) {
-      insertIntoTextarea(e.target.closest('.js-suggester-container').querySelector('textarea'), formatGiphyMarkdown(giphy));
-    });
+    var textarea = e.target.closest('.js-suggester-container').querySelector('textarea');
+    var selection = getSelectionInTextarea(textarea);
+    if (selection.length) {
+      getGiphyByPhrase(selection).then(function (giphy) {
+        insertIntoTextarea(textarea, formatGiphyMarkdown(giphy));
+      });
+    } else {
+      getRandomGiphy().then(function (giphy) {
+        insertIntoTextarea(textarea, formatGiphyMarkdown(giphy));
+      });
+    }
   });
 };
 
