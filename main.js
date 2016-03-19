@@ -42,19 +42,19 @@ var getJSON = function (url) {
 };
 
 var getRandomGiphy = function () {
-  return getJSON('https://api.giphy.com/v1/gifs/random?api_key=' + giphyAPIkey).then(function (response) {
+  return getJSON(`https://api.giphy.com/v1/gifs/random?api_key=${giphyAPIkey}`).then(function (response) {
     return response.data;
   });
 };
 
 var getGiphyByPhrase = function (phrase) {
-  return getJSON('https://api.giphy.com/v1/gifs/translate?s=' + encodeURI(phrase) + '&api_key=' + giphyAPIkey).then(function (response) {
+  return getJSON(`https://api.giphy.com/v1/gifs/translate?s=${encodeURI(phrase)}&api_key=${giphyAPIkey}`).then(function (response) {
     return response.data;
   });
 };
 
 var formatGiphyMarkdown = function(giphy) {
-  return '![' + (giphy.slug || '') + '](https://media2.giphy.com/media/' + giphy.id + '/giphy.gif)';
+  return `![${(giphy.slug || '')}](https://media2.giphy.com/media/${giphy.id}/giphy.gif)`;
 };
 
 var addGiphyToolgroup = function (toolbarEl) {
