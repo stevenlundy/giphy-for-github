@@ -14,6 +14,27 @@ var insertIntoTextarea = function (textarea, text, replaceSelection=true) {
   }
 };
 
+var getJSON = function (url) {
+  return new Promise(function (resolve, reject) {
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+
+    request.onload = function() {
+      if (this.status >= 200 && this.status < 400) {
+        resolve(JSON.parse(this.response));
+      } else {
+        reject();
+      }
+    };
+
+    request.onerror = function() {
+      reject();
+    };
+
+    request.send();
+  });
+};
+
 var addGiphyToolgroup = function (toolbarEl) {
   var toolgroup = document.createElement('div');
   toolgroup.classList.add('toolbar-group');
