@@ -16,6 +16,10 @@ There are two ways to use the extension.
 ### Insert random giphy
 Put your cursor where you want to insert the giphy and press the GIF button.
 
+![random](https://cloud.githubusercontent.com/assets/4694092/13901134/38e4b60c-edd7-11e5-956c-4cb1bdb4bc63.gif)
+
 ### Insert giphy based on a word or phrase
 Type a word or phrase that you want giphy'd.
 Select the text and press the GIF button.
+
+![phrase](https://cloud.githubusercontent.com/assets/4694092/13901133/38e46d96-edd7-11e5-967e-d1340df1ec68.gif)
