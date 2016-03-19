@@ -1,4 +1,4 @@
-var giphyAPIkey = 'dc6zaTOxFJmzC';
+const giphyAPIkey = 'dc6zaTOxFJmzC';
 
 var addClasses = function (el, ...classes) {
   classes.forEach(className => el.classList.add(className));
@@ -71,18 +71,14 @@ var addGiphyToolgroup = function (toolbarEl) {
     var textarea = e.target.closest('.js-suggester-container').querySelector('textarea');
     var selection = getSelectionInTextarea(textarea);
     if (selection.length) {
-      getGiphyByPhrase(selection).then(function (giphy) {
-        insertIntoTextarea(textarea, formatGiphyMarkdown(giphy));
-      });
+      getGiphyByPhrase(selection).then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy)));
     } else {
-      getRandomGiphy().then(function (giphy) {
-        insertIntoTextarea(textarea, formatGiphyMarkdown(giphy));
-      });
+      getRandomGiphy().then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy)));
     }
   });
 };
 
 var tools = document.querySelectorAll('.toolbar-commenting');
-for (var i = 0; i < tools.length; i++) {
+for (let i = 0; i < tools.length; i++) {
   addGiphyToolgroup(tools[i]);
 }
