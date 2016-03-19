@@ -2,6 +2,18 @@ var addClasses = function (el, ...classes) {
   classes.forEach(className => el.classList.add(className));
 };
 
+var insertIntoTextarea = function (textarea, text, replaceSelection=true) {
+  var start = textarea.selectionStart;
+  var end = textarea.selectionEnd;
+  if (replaceSelection) {
+    textarea.innerHTML = textarea.innerHTML.slice(0, start) + text + textarea.innerHTML.slice(end);
+    textarea.selectionEnd = start + text.length;
+  } else {
+    textarea.innerHTML = textarea.innerHTML.slice(0, end) + text + textarea.innerHTML.slice(end);
+    textarea.selectionEnd = end + text.length;
+  }
+};
+
 var addGiphyToolgroup = function (toolbarEl) {
   var toolgroup = document.createElement('div');
   toolgroup.classList.add('toolbar-group');
