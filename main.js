@@ -6,10 +6,10 @@ var insertIntoTextarea = function (textarea, text, replaceSelection=true) {
   var start = textarea.selectionStart;
   var end = textarea.selectionEnd;
   if (replaceSelection) {
-    textarea.innerHTML = textarea.innerHTML.slice(0, start) + text + textarea.innerHTML.slice(end);
+    textarea.value = textarea.value.slice(0, start) + text + textarea.value.slice(end);
     textarea.selectionEnd = start + text.length;
   } else {
-    textarea.innerHTML = textarea.innerHTML.slice(0, end) + text + textarea.innerHTML.slice(end);
+    textarea.value = textarea.value.slice(0, end) + text + textarea.value.slice(end);
     textarea.selectionEnd = end + text.length;
   }
 };
