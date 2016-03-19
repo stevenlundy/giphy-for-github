@@ -65,8 +65,8 @@ var addGiphyToolgroup = function (toolbarEl) {
   addClasses(giphyButton, 'toolbar-item', 'tooltipped', 'tooltipped-nw');
   giphyButton.setAttribute('aria-label', 'Add a random giphy');
   toolgroup.appendChild(giphyButton);
-  tools[i].appendChild(toolgroup);
-  tools[i].addEventListener('click', function(e) {
+  toolbarEl.appendChild(toolgroup);
+  giphyButton.addEventListener('click', function(e) {
     e.preventDefault();
     var textarea = e.target.closest('.js-suggester-container').querySelector('textarea');
     var selection = getSelectionInTextarea(textarea);
