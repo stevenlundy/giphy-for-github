@@ -54,7 +54,7 @@ var getGiphyByPhrase = function (phrase) {
 };
 
 var formatGiphyMarkdown = function(giphy) {
-  return '![](https://media2.giphy.com/media/' + giphy.id + '/giphy.gif)';
+  return '![' + (giphy.slug || '') + '](https://media2.giphy.com/media/' + giphy.id + '/giphy.gif)';
 };
 
 var addGiphyToolgroup = function (toolbarEl) {
