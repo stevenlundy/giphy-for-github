@@ -1,9 +1,8 @@
 var addClasses = function (el, ...classes) {
   classes.forEach(className => el.classList.add(className));
-}
+};
 
-var tools = document.querySelectorAll('.toolbar-commenting');
-for (var i = 0; i < tools.length; i++) {
+var addGiphyToolgroup = function (toolbarEl) {
   var toolgroup = document.createElement('div');
   toolgroup.classList.add('toolbar-group');
   var giphyButton = document.createElement('button');
@@ -15,4 +14,9 @@ for (var i = 0; i < tools.length; i++) {
   tools[i].addEventListener('click', function(e) {
     e.preventDefault();
   })
+};
+
+var tools = document.querySelectorAll('.toolbar-commenting');
+for (var i = 0; i < tools.length; i++) {
+  addGiphyToolgroup(tools[i]);
 }
