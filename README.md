@@ -11,7 +11,7 @@ I haven't published this extension to the chrome webstore, but you can add it to
 1. Navigate to the directory where you downloaded the repo
 
 ## Using the extension
-There are two ways to use the extension.
+There are three ways to use the extension.
 
 ### Insert random giphy
 Put your cursor where you want to insert the giphy and press the GIF button.
@@ -23,3 +23,8 @@ Type a word or phrase that you want giphy'd.
 Select the text and press the GIF button.
 
 ![phrase](https://cloud.githubusercontent.com/assets/4694092/13901133/38e46d96-edd7-11e5-967e-d1340df1ec68.gif)
+
+### Insert specific giphy by id
+Paste the id of the giphy you want.
+Select the text and press the GIF button.
+

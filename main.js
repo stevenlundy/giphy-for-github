@@ -20,6 +20,11 @@ var getSelectionInTextarea = function (textarea) {
   return textarea.value.slice(textarea.selectionStart, textarea.selectionEnd);
 }
 
+// Check if a string could be a giphy id
+var isGiphyId = function (string) {
+  return /[a-zA-Z0-9]{13,}/.test(string);
+}
+
 var getJSON = function (url) {
   return new Promise(function (resolve, reject) {
     var request = new XMLHttpRequest();
@@ -61,7 +66,9 @@ var handleGIFButtonClick = function(e) {
   e.preventDefault();
   var textarea = e.target.closest('.js-suggester-container').querySelector('textarea');
   var selection = getSelectionInTextarea(textarea);
-  if (selection.length) {
+  if (selection.length && isGiphyId(selection)) {
+    getGiphyByPhrase(selection).then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy)));
+  } else if (selection.length) {
     getGiphyByPhrase(selection).then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy, selection)));
   } else {
     getRandomGiphy().then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy)));
