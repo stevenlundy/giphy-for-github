@@ -73,8 +73,9 @@ var addGiphyToolgroup = function (toolbarEl) {
   toolgroup.classList.add('toolbar-group');
   var giphyButton = document.createElement('button');
   giphyButton.innerHTML = 'GIF';
-  addClasses(giphyButton, 'toolbar-item', 'tooltipped', 'tooltipped-nw');
+  addClasses(giphyButton, 'js-toolbar-item', 'toolbar-item', 'tooltipped', 'tooltipped-nw');
   giphyButton.setAttribute('aria-label', 'Add a random giphy');
+  giphyButton.setAttribute('data-ga-click', 'Markdown Toolbar, click, giphy');
   toolgroup.appendChild(giphyButton);
   toolbarEl.appendChild(toolgroup);
   giphyButton.addEventListener('click', handleGIFButtonClick);
