@@ -1,4 +1,13 @@
 const giphyAPIkey = 'dc6zaTOxFJmzC';
+var rating = 'g';
+chrome.storage.sync.get({ rating: 'all' }, function (items) {
+  rating = items.rating;
+});
+chrome.storage.onChanged.addListener(function (changes) {
+  if (changes.rating) {
+    rating = changes.rating.newValue;
+  }
+});
 
 var addClasses = function (el, ...classes) {
   classes.forEach(className => el.classList.add(className));
@@ -47,13 +56,13 @@ var getJSON = function (url) {
 };
 
 var getRandomGiphy = function () {
-  return getJSON(`https://api.giphy.com/v1/gifs/random?api_key=${giphyAPIkey}`).then(function (response) {
+  return getJSON(`https://api.giphy.com/v1/gifs/random?api_key=${giphyAPIkey}&rating=${rating}`).then(function (response) {
     return response.data;
   });
 };
 
 var getGiphyByPhrase = function (phrase) {
-  return getJSON(`https://api.giphy.com/v1/gifs/translate?s=${encodeURI(phrase)}&api_key=${giphyAPIkey}`).then(function (response) {
+  return getJSON(`https://api.giphy.com/v1/gifs/translate?s=${encodeURI(phrase)}&api_key=${giphyAPIkey}&rating=${rating}`).then(function (response) {
     return response.data;
   });
 };
