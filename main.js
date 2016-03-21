@@ -67,6 +67,12 @@ var getGiphyByPhrase = function (phrase) {
   });
 };
 
+var getGiphyById = function (id) {
+  return getJSON(`https://api.giphy.com/v1/gifs/translate?s=${id}&api_key=${giphyAPIkey}`).then(function (response) {
+    return response.data;
+  });
+}
+
 var formatGiphyMarkdown = function(giphy, altText) {
   return `![${(altText || giphy.slug || '')}](https://media2.giphy.com/media/${giphy.id}/giphy.gif)`;
 };
@@ -76,7 +82,7 @@ var handleGIFButtonClick = function(e) {
   var textarea = e.target.closest('.js-suggester-container').querySelector('textarea');
   var selection = getSelectionInTextarea(textarea);
   if (selection.length && isGiphyId(selection)) {
-    getGiphyByPhrase(selection).then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy)));
+    getGiphyById(selection).then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy)));
   } else if (selection.length) {
     getGiphyByPhrase(selection).then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy, selection)));
   } else {
