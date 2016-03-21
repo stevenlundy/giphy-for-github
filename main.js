@@ -73,7 +73,10 @@ var getGiphyById = function (id) {
   });
 }
 
-var formatGiphyMarkdown = function(giphy, altText) {
+var formatGiphyMarkdown = function (giphy, altText) {
+  if (!giphy.id) {
+    giphy.id = '14vK3Sc3zepWM0';
+  }
   return `![${(altText || giphy.slug || '')}](https://media2.giphy.com/media/${giphy.id}/giphy.gif)`;
 };
 
