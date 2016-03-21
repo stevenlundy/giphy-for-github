@@ -31,7 +31,7 @@ var getSelectionInTextarea = function (textarea) {
 
 // Check if a string could be a giphy id
 var isGiphyId = function (string) {
-  return /[a-zA-Z0-9]{13,}/.test(string);
+  return /[a-zA-Z0-9]{13,19}/.test(string);
 }
 
 var getJSON = function (url) {
