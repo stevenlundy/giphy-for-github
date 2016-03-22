@@ -106,7 +106,11 @@ var addGiphyToolgroup = function (toolbarEl) {
   giphyButton.addEventListener('click', handleGIFButtonClick);
 };
 
-var tools = document.querySelectorAll('.toolbar-commenting');
-for (let i = 0; i < tools.length; i++) {
-  addGiphyToolgroup(tools[i]);
-}
+var iterateOverToolbars = function (callback) {
+  var tools = document.querySelectorAll('.toolbar-commenting');
+  for (let i = 0; i < tools.length; i++) {
+    callback(tools[i]);
+  }
+};
+
+iterateOverToolbars(addGiphyToolgroup);
