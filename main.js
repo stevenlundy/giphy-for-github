@@ -114,3 +114,13 @@ var iterateOverToolbars = function (callback) {
 };
 
 iterateOverToolbars(addGiphyToolgroup);
+
+var oldLocation = location.href;
+setInterval(function () {
+  if (location.href != oldLocation) {
+    oldLocation = location.href;
+    setTimeout(function () {
+      iterateOverToolbars(addGiphyToolgroup);
+    }, 1000);
+  }
+}, 50);
