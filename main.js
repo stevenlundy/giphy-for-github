@@ -121,12 +121,10 @@ var iterateOverToolbars = function (callback) {
 
 iterateOverToolbars(addGiphyToolgroup);
 
-var oldLocation = location.href;
-setInterval(function () {
-  if (location.href != oldLocation) {
-    oldLocation = location.href;
-    setTimeout(function () {
-      iterateOverToolbars(addGiphyToolgroup);
-    }, 1000);
-  }
-}, 50);
+var observer = new MutationObserver(function (mutations) {
+  iterateOverToolbars(addGiphyToolgroup);
+});
+
+var config = { attributes: true, childList: true, characterData: true };
+
+observer.observe(document.querySelector('#js-repo-pjax-container'), config);
