@@ -1,7 +1,7 @@
 {
 "name":"Giphy for GitHub",
 "description":"",
-"version":"1",
+"version":"1.0.1",
 "manifest_version":2,
 "permissions": [
   "storage"
