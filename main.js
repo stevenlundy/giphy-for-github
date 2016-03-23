@@ -97,13 +97,13 @@ var addGiphyToolgroup = function (toolbarEl) {
     return;
   }
   if (toolbarEl.querySelector('.giphy-button')) {
-    return;
+    toolbarEl.querySelector('.giphy-button').remove();
   }
   var toolgroup = document.createElement('div');
-  toolgroup.classList.add('toolbar-group');
+  addClasses(toolgroup, 'toolbar-group', 'giphy-button');
   var giphyButton = document.createElement('button');
   giphyButton.innerHTML = 'GIF';
-  addClasses(giphyButton, 'giphy-button', 'js-toolbar-item', 'toolbar-item', 'tooltipped', 'tooltipped-nw');
+  addClasses(giphyButton, 'js-toolbar-item', 'toolbar-item', 'tooltipped', 'tooltipped-nw');
   giphyButton.setAttribute('type', 'button');
   giphyButton.setAttribute('aria-label', 'Add a random giphy');
   giphyButton.setAttribute('data-ga-click', 'Markdown Toolbar, click, giphy');
