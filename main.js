@@ -81,7 +81,6 @@ var formatGiphyMarkdown = function (giphy, altText) {
 };
 
 var handleGIFButtonClick = function(e) {
-  e.preventDefault();
   var textarea = e.target.closest('.js-suggester-container').querySelector('textarea');
   var selection = getSelectionInTextarea(textarea);
   if (selection.length && isGiphyId(selection)) {
@@ -99,6 +98,7 @@ var addGiphyToolgroup = function (toolbarEl) {
   var giphyButton = document.createElement('button');
   giphyButton.innerHTML = 'GIF';
   addClasses(giphyButton, 'js-toolbar-item', 'toolbar-item', 'tooltipped', 'tooltipped-nw');
+  giphyButton.setAttribute('type', 'button');
   giphyButton.setAttribute('aria-label', 'Add a random giphy');
   giphyButton.setAttribute('data-ga-click', 'Markdown Toolbar, click, giphy');
   toolgroup.appendChild(giphyButton);
