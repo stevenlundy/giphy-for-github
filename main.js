@@ -93,6 +93,9 @@ var handleGIFButtonClick = function(e) {
 };
 
 var addGiphyToolgroup = function (toolbarEl) {
+  if (toolbarEl.closest('#js-inline-comments-single-container-template')) {
+    return;
+  }
   var toolgroup = document.createElement('div');
   toolgroup.classList.add('toolbar-group');
   var giphyButton = document.createElement('button');
