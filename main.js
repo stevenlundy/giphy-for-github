@@ -1,4 +1,7 @@
 const giphyAPIkey = 'dc6zaTOxFJmzC';
+const errorGiphyId = 'haZOqHKz9tTfW';
+const noResultGiphyId = '14vK3Sc3zepWM0';
+
 var rating = 'g';
 chrome.storage.sync.get('rating', function (items) {
   rating = items.rating;
@@ -75,7 +78,7 @@ var getGiphyById = function (id) {
 
 var formatGiphyMarkdown = function (giphy, altText) {
   if (!giphy.id) {
-    giphy.id = '14vK3Sc3zepWM0';
+    giphy.id = noResultGiphyId;
   }
   return `![${(altText || giphy.slug || '')}](https://media2.giphy.com/media/${giphy.id}/giphy.gif)`;
 };
@@ -83,13 +86,17 @@ var formatGiphyMarkdown = function (giphy, altText) {
 var handleGIFButtonClick = function(e) {
   var textarea = e.target.closest('.js-suggester-container').querySelector('textarea');
   var selection = getSelectionInTextarea(textarea);
+  var getGiphy;
   if (selection.length && isGiphyId(selection)) {
-    getGiphyById(selection).then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy)));
+    getGiphy = getGiphyById(selection);
   } else if (selection.length) {
-    getGiphyByPhrase(selection).then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy, selection)));
+    var altText = selection;
+    getGiphy = getGiphyByPhrase(selection);
   } else {
-    getRandomGiphy().then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy)));
+    getGiphy = getRandomGiphy();
   }
+  getGiphy.then(giphy => insertIntoTextarea(textarea, formatGiphyMarkdown(giphy, altText)))
+          .catch(error => insertIntoTextarea(textarea, formatGiphyMarkdown({id: errorGiphyId}, 'Sorry, something went wrong')))
 };
 
 var addGiphyToolgroup = function (toolbarEl) {
