@@ -1,6 +1,6 @@
 const giphyAPIkey = 'dc6zaTOxFJmzC';
 var rating = 'g';
-chrome.storage.sync.get({ rating: 'all' }, function (items) {
+chrome.storage.sync.get('rating', function (items) {
   rating = items.rating;
 });
 chrome.storage.onChanged.addListener(function (changes) {
