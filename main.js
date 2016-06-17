@@ -1,10 +1,21 @@
 const giphyAPIkey = 'dc6zaTOxFJmzC';
 const errorGiphyId = 'haZOqHKz9tTfW';
 const noResultGiphyId = '14vK3Sc3zepWM0';
+const validRatings = ['y', 'g', 'pg', 'pg-13', 'r', 'nsfw', '', 'unrated'];
+
+function setRating(rating) {
+  chrome.storage.sync.set({
+    rating: rating
+  }, function () {});
+}
 
 var rating = 'g';
 chrome.storage.sync.get('rating', function (items) {
-  rating = items.rating;
+  if (validRatings.includes(items.rating)) {
+    rating = items.rating;
+  } else {
+    setRating(rating);
+  }
 });
 chrome.storage.onChanged.addListener(function (changes) {
   if (changes.rating) {
