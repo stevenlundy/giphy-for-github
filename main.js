@@ -95,7 +95,7 @@ var formatGiphyMarkdown = function (giphy, altText) {
 };
 
 var handleGIFButtonClick = function(e) {
-  var textarea = e.target.closest('.js-suggester-container').querySelector('textarea');
+  var textarea = document.getElementById('pull_request_review_body');
   var selection = getSelectionInTextarea(textarea);
   var getGiphy;
   if (selection.length && isGiphyId(selection)) {
