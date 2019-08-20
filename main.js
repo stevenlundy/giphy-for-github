@@ -95,7 +95,7 @@ var formatGiphyMarkdown = function (giphy, altText) {
 };
 
 var handleGIFButtonClick = function(e) {
-  var textarea = (e.target.closest('.js-suggester-container') || e.target.closest('form')).querySelector('textarea');
+  var textarea = e.target.closest('form').querySelector('textarea');
   var selection = getSelectionInTextarea(textarea);
   var getGiphy;
   e.stopPropagation();
@@ -139,17 +139,10 @@ var iterateOverToolbars = function (callback) {
   }
 };
 
-var iterateOverReviews = function (callback) {
-  var tools = document.querySelector('#submit-review > div > form > div.form-actions');
-    callback(tools);
-};
-
 iterateOverToolbars(addGiphyToolgroup);
-iterateOverReviews(addGiphyToolgroup);
 
 var observer = new MutationObserver(function (mutations) {
   iterateOverToolbars(addGiphyToolgroup);
-  iterateOverReviews(addGiphyToolgroup);
 });
 
 var config = { attributes: true, childList: true, characterData: true };
