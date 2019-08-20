@@ -147,4 +147,7 @@ var observer = new MutationObserver(function (mutations) {
 
 var config = { attributes: true, childList: true, characterData: true };
 
-observer.observe(document.querySelector('#js-repo-pjax-container'), config);
+var observable = document.querySelector('#js-repo-pjax-container');
+if (observable) {
+  observer.observe(observable, config);
+}
