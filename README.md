@@ -1,10 +1,13 @@
 # Giphy for GitHub
-This is a chrome extension that gives you the ability to easily add gifs from giphy into pull request comments.
+This is a Chrome extension that gives you the ability to easily add gifs from giphy into pull request comments.
 
-## Adding to chrome
-I haven't published this extension to the chrome webstore, but you can add it to your browser manually to try it out.
+## Adding to Chrome
+You can find the extension in the [Chrome web store](https://chrome.google.com/webstore/detail/giphy-for-github/njpbcacdkcomjpddllidghnpjjdjbfoh)!
+
+If you want to use the extension with GitHub Enterprise, you can pack your own version of the extension
 
 1. Download the repo to a folder on your computer
+1. add your enterprise URL (something like `http://github.companyname.com/*`) to the matches list in `manifest.json`
 1. Go to chrome://extensions/
 1. Enable developer mode
 1. Click load unpacked extension...
